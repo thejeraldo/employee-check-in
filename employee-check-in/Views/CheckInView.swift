@@ -47,7 +47,6 @@ extension CheckInView {
     @ViewBuilder
     func makeDatePicker() -> some View {
         DatePicker(selection: $viewModel.checkInDateTime,
-                   in: ...Date.now,
                    displayedComponents: .date, label: {
             Label("Date", systemImage: "calendar")
         })
@@ -59,7 +58,6 @@ extension CheckInView {
     @ViewBuilder
     func makeTimePicker() -> some View {
         DatePicker(selection: $viewModel.checkInDateTime,
-                   in: ...Date.now,
                    displayedComponents: .hourAndMinute, label: {
             Label("Time", systemImage: "clock")
         })
@@ -86,6 +84,7 @@ extension CheckInView {
 
 extension CheckInView {
     private func didTapSubmitButton() {
+        print("Attempt to submit: ", viewModel.checkInDateTime)
         guard viewModel.validateCheckInDateTime() else {
             return
         }
