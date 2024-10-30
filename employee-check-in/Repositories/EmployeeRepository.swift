@@ -24,9 +24,16 @@ class EmployeeRepository {
         let context = dataManager.persistentContainer.newBackgroundContext()
         try await context.perform {
             context.automaticallyMergesChangesFromParent = true
-            let item = Employee(context: context)
+            let employee = Employee(context: context)
             let dateString = self.df.string(from: date)
-            item.check_in_date_time = dateString
+            employee.check_in_date_time = dateString
+            
+            let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
+            let companies = try context.fetch(fetchRequest)
+            if let company = companies.first {
+                employee.company = company
+            }
+            
             if context.hasChanges {
                 try context.save()
             }

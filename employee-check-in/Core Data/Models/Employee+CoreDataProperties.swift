@@ -2,7 +2,7 @@
 //  Employee+CoreDataProperties.swift
 //  employee-check-in
 //
-//  Created by Jerald Allen Abille on 10/30/24.
+//  Created by Jerald Allen Abille on 10/31/24.
 //
 //
 
@@ -17,6 +17,7 @@ extension Employee {
     }
 
     @NSManaged public var check_in_date_time: String?
+    @NSManaged public var company: Company?
 
 }
 

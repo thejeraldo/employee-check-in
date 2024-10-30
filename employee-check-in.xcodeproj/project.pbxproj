@@ -29,6 +29,8 @@
 		F87CD6222CD2812300F14885 /* Employee+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CD6202CD2812300F14885 /* Employee+CoreDataClass.swift */; };
 		F87CD6232CD2812300F14885 /* Employee+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CD6212CD2812300F14885 /* Employee+CoreDataProperties.swift */; };
 		F87CD6292CD2A46400F14885 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CD6282CD2A46400F14885 /* Errors.swift */; };
+		F87CD62C2CD2B61700F14885 /* Company+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CD62A2CD2B61700F14885 /* Company+CoreDataClass.swift */; };
+		F87CD62D2CD2B61700F14885 /* Company+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87CD62B2CD2B61700F14885 /* Company+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		F87CD6202CD2812300F14885 /* Employee+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F87CD6212CD2812300F14885 /* Employee+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Employee+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F87CD6282CD2A46400F14885 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		F87CD62A2CD2B61700F14885 /* Company+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F87CD62B2CD2B61700F14885 /* Company+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +232,8 @@
 		F87CD61D2CD2810300F14885 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F87CD62A2CD2B61700F14885 /* Company+CoreDataClass.swift */,
+				F87CD62B2CD2B61700F14885 /* Company+CoreDataProperties.swift */,
 				F87CD6202CD2812300F14885 /* Employee+CoreDataClass.swift */,
 				F87CD6212CD2812300F14885 /* Employee+CoreDataProperties.swift */,
 			);
@@ -379,6 +385,7 @@
 				F87CD61F2CD2810F00F14885 /* DataManager.swift in Sources */,
 				F87CD6052CD2722900F14885 /* CheckInViewModel.swift in Sources */,
 				F87CD6232CD2812300F14885 /* Employee+CoreDataProperties.swift in Sources */,
+				F87CD62D2CD2B61700F14885 /* Company+CoreDataProperties.swift in Sources */,
 				F87CD5FE2CD25D9600F14885 /* CheckInView.swift in Sources */,
 				F87CD5C62CD2579500F14885 /* AppDelegate.swift in Sources */,
 				F87CD60B2CD2756A00F14885 /* CheckInService.swift in Sources */,
@@ -386,6 +393,7 @@
 				F87CD5C82CD2579500F14885 /* SceneDelegate.swift in Sources */,
 				F87CD61C2CD2805F00F14885 /* EmployeeRepository.swift in Sources */,
 				F87CD6082CD2749100F14885 /* CheckInDateTimeResponse.swift in Sources */,
+				F87CD62C2CD2B61700F14885 /* Company+CoreDataClass.swift in Sources */,
 				F87CD6292CD2A46400F14885 /* Errors.swift in Sources */,
 				F87CD6102CD2770600F14885 /* API.swift in Sources */,
 				F87CD6222CD2812300F14885 /* Employee+CoreDataClass.swift in Sources */,
