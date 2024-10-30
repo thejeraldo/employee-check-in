@@ -6,6 +6,8 @@
 //
 
 #import "MainViewController.h"
+#import <SwiftUI/SwiftUI.h>
+#import "employee_check_in-Swift.h"
 
 @interface MainViewController ()
 
@@ -41,7 +43,8 @@
 }
 
 - (void)didTapStartButton {
-    NSLog(@"Start!");
+    CheckInViewController *vc = [CheckInViewController new];
+    [[self navigationController] pushViewController:vc animated:YES];
 }
 
 @end
