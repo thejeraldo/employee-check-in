@@ -21,6 +21,6 @@ MVVM (Model-View-ViewModel)
 
 ##### Bonus
 To test the migration part:
-1. Run the app from the main branch and submit a few check-ins.
+1. Run the app from the `main` branch and submit a few check-ins.
 2. Run the app from the `company-migration` branch and submit a few check-ins.
 
