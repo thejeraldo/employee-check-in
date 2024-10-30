@@ -28,14 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if results.isEmpty {
                     let item = Company(context: context)
                     item.name = "Dunder Mifflin"
-                    if context.hasChanges {
-                        try context.save()
-                    }
                     
                     let context = dataManager.persistentContainer.viewContext
                     let fetchRequest: NSFetchRequest<Employee> = Employee.fetchRequest()
                     let employees = try context.fetch(fetchRequest)
                     item.employees = NSOrderedSet(array: employees)
+                    
+                    if context.hasChanges {
+                        try context.save()
+                    }
                 }
             }
         }
