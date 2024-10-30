@@ -27,7 +27,7 @@ struct CheckInView: View {
             .selectionDisabled()
         }
         .task {
-            viewModel.getCheckInDateTime()
+            viewModel.setInitialCheckInDateTime()
         }
     }
 }
@@ -77,7 +77,7 @@ extension CheckInView {
 
 extension CheckInView {
     private func didTapSubmitButton() {
-        print(viewModel.checkInDateTime)
+        viewModel.addCheckInTime()
     }
 }
 

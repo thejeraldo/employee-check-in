@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import Combine
 
 @Observable
 class CheckInViewModel {
     
-    init(checkInService: CheckInService = CheckInService()) {
+    init(checkInService: CheckInService = CheckInService(), 
+         employeeRepository: EmployeeRepository = EmployeeRepository()) {
         self.checkInService = checkInService
+        self.employeeRepository = employeeRepository
         self.df = DateFormatter()
         self.df.dateFormat = "yyyy-MM-dd HH:mm"
     }
@@ -20,20 +23,34 @@ class CheckInViewModel {
     
     private var checkInService: CheckInService
     
+    private var employeeRepository: EmployeeRepository
+    
     private var df: DateFormatter
     
-    func getCheckInDateTime() {
+    func setInitialCheckInDateTime() {
         Task {
             do {
-                let checkInDateTime = try await checkInService.getCheckInDateTime()
-                if let dateTime = self.df.date(from: checkInDateTime.dateTime) {
-                    self.checkInDateTime = dateTime
+                if let lastCheckInDate = try employeeRepository.getLastCheckInDateTime() {
+                    self.checkInDateTime = lastCheckInDate
                 } else {
-                    // Throw an error for failing to get date.
+                    let checkInDateTime = try await checkInService.getCheckInDateTime()
+                    if let dateTime = self.df.date(from: checkInDateTime.dateTime) {
+                        self.checkInDateTime = dateTime
+                    } else {
+                        // Throw an error for failing to get date.
+                    }
                 }
             } catch {
                 // Do something with the error here.
             }
+        }
+    }
+    
+    func addCheckInTime() {
+        do {
+            try employeeRepository.addCheckInDateTime(checkInDateTime)
+        } catch {
+            print(error)
         }
     }
     
