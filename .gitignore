@@ -1,0 +1,68 @@
+# User-specific files
+*.xcuserdatad
+*.xcuserdata
+*.xcodeproj/*
+*.xcworkspace/*
+
+# Build products
+build/
+DerivedData/
+
+# Logs
+*.log
+*.xcactivitylog
+
+# Temporary files
+*.moved-aside
+*.swp
+*.lock
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Carthage dependencies
+Carthage/Build/
+
+# CocoaPods dependencies
+Pods/
+*.lock
+Podfile.lock
+
+# Archives
+*.xcarchive
+
+# Thumbnails
+*.xccheckout
+*.xccrashpoint
+
+# iOS specific
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# SwiftPM binary artifacts
+*.a
+*.o
+*.hmap
+
+# Asset catalog build outputs
+*.appiconset
+*.launchimage
+*.imageset
+
+# Editor directories and temporary files
+.idea/
+.vscode/
+*.DS_Store
+*.orig
+*.orig.*
+
+# Playground specific
+timeline.xctimeline
+playground.xcworkspace
+
+# Xcode Generated scheme management
+xcshareddata/
+xcdebugger/
