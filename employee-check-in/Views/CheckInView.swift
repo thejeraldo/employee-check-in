@@ -15,6 +15,8 @@ struct CheckInView: View {
     
     @State var viewModel = CheckInViewModel()
     
+    var hostingController: CheckInViewController?
+    
     var body: some View {
         Form {
             Section {
@@ -26,6 +28,12 @@ struct CheckInView: View {
             }
             .selectionDisabled()
         }
+        .alert(viewModel.successAlertMessage, isPresented: $viewModel.showSuccessAlert) {
+            Button(action: { goBack() }, label: { Text("OK") })
+        }
+        .alert(isPresented: $viewModel.showErrorAlert, error: viewModel.checkInError, actions: {
+            Button(action: {}, label: { Text("OK") })
+        })
         .task {
             viewModel.setInitialCheckInDateTime()
         }
@@ -71,13 +79,21 @@ extension CheckInView {
                 .padding(.bottom, 4)
         })
     }
+
 }
 
 // MARK: - Actions
 
 extension CheckInView {
     private func didTapSubmitButton() {
+        guard viewModel.validateCheckInDateTime() else {
+            return
+        }
         viewModel.addCheckInTime()
+    }
+    
+    private func goBack() {
+        hostingController?.goBack()
     }
 }
 

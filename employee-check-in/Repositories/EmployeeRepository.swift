@@ -20,14 +20,16 @@ class EmployeeRepository {
     
     private var df: DateFormatter
     
-    func addCheckInDateTime(_ date: Date) throws {
+    func addCheckInDateTime(_ date: Date) async throws {
         let context = dataManager.persistentContainer.newBackgroundContext()
-        context.automaticallyMergesChangesFromParent = true
-        let item = Employee(context: context)
-        let dateString = self.df.string(from: date)
-        item.check_in_date_time = dateString
-        if context.hasChanges {
-            try context.save()
+        try await context.perform {
+            context.automaticallyMergesChangesFromParent = true
+            let item = Employee(context: context)
+            let dateString = self.df.string(from: date)
+            item.check_in_date_time = dateString
+            if context.hasChanges {
+                try context.save()
+            }
         }
     }
     

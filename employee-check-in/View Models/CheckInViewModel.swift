@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import Combine
 
 @Observable
 class CheckInViewModel {
+    
+    // MARK: - Init
     
     init(checkInService: CheckInService = CheckInService(), 
          employeeRepository: EmployeeRepository = EmployeeRepository()) {
@@ -19,7 +20,11 @@ class CheckInViewModel {
         self.df.dateFormat = "yyyy-MM-dd HH:mm"
     }
     
+    // MARK: - Public Properties
+    
     var checkInDateTime: Date = .now
+    
+    // MARK: - Private Properties
     
     private var checkInService: CheckInService
     
@@ -27,8 +32,21 @@ class CheckInViewModel {
     
     private var df: DateFormatter
     
+    // MARK: - Alerts
+    
+    var showSuccessAlert: Bool = false
+    
+    let successAlertMessage = "Checked in successfully!"
+    
+    var showErrorAlert: Bool = false
+    
+    private(set) var checkInError: CheckInError?
+    
+    // MARK: - Methods
+    
     func setInitialCheckInDateTime() {
-        Task {
+        Task { @MainActor [weak self] in
+            guard let self else { return }
             do {
                 if let lastCheckInDate = try employeeRepository.getLastCheckInDateTime() {
                     self.checkInDateTime = lastCheckInDate
@@ -37,20 +55,36 @@ class CheckInViewModel {
                     if let dateTime = self.df.date(from: checkInDateTime.dateTime) {
                         self.checkInDateTime = dateTime
                     } else {
-                        // Throw an error for failing to get date.
+                        self.checkInError = .somethingWentWrong
+                        self.showErrorAlert = true
                     }
                 }
             } catch {
-                // Do something with the error here.
+                self.checkInError = .somethingWentWrong
+                self.showErrorAlert = true
             }
         }
     }
     
+    func validateCheckInDateTime() -> Bool {
+        guard checkInDateTime <= Date.now else {
+            self.checkInError = .dateCannotBeFutureDate
+            self.showErrorAlert = true
+            return false
+        }
+        return true
+    }
+    
     func addCheckInTime() {
-        do {
-            try employeeRepository.addCheckInDateTime(checkInDateTime)
-        } catch {
-            print(error)
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            do {
+                try await self.employeeRepository.addCheckInDateTime(checkInDateTime)
+                self.showSuccessAlert = true
+            } catch {
+                self.checkInError = .unableToCheckIn
+                self.showErrorAlert = true
+            }
         }
     }
     
