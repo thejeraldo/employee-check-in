@@ -7,9 +7,13 @@
 
 import SwiftUI
 
+struct CheckInDateTime: Codable {
+    var dateTime: String
+}
+
 struct CheckInView: View {
     
-    @State var checkInDate: Date = .now
+    @State var viewModel = CheckInViewModel()
     
     var body: some View {
         Form {
@@ -22,6 +26,9 @@ struct CheckInView: View {
             }
             .selectionDisabled()
         }
+        .task {
+            viewModel.getCheckInDateTime()
+        }
     }
 }
 
@@ -31,7 +38,7 @@ extension CheckInView {
     
     @ViewBuilder
     func makeDatePicker() -> some View {
-        DatePicker(selection: $checkInDate,
+        DatePicker(selection: $viewModel.checkInDateTime,
                    in: ...Date.now,
                    displayedComponents: .date, label: {
             Label("Date", systemImage: "calendar")
@@ -43,7 +50,7 @@ extension CheckInView {
     
     @ViewBuilder
     func makeTimePicker() -> some View {
-        DatePicker(selection: $checkInDate,
+        DatePicker(selection: $viewModel.checkInDateTime,
                    in: ...Date.now,
                    displayedComponents: .hourAndMinute, label: {
             Label("Time", systemImage: "clock")
@@ -64,16 +71,13 @@ extension CheckInView {
                 .padding(.bottom, 4)
         })
     }
-    
-    
-    
 }
 
 // MARK: - Actions
 
 extension CheckInView {
     private func didTapSubmitButton() {
-        
+        print(viewModel.checkInDateTime)
     }
 }
 
