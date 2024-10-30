@@ -38,6 +38,7 @@ import SwiftUI
     // MARK: - Setup
     
     private func setupViews() {
+        self.title = "Check-in"
         view.backgroundColor = .systemBackground
         view.addSubview(hostingController.view)
         hostingController.view.translatesAutoresizingMaskIntoConstraints = false
